@@ -26,7 +26,9 @@ public class TempSummaryStatistics {
         
         @Override
         public boolean equals(Object obj) {
-                TempSummaryStatistics other = (TempSummaryStatistics) obj;
+                if(obj == null) return false;
+                Object otherObj = obj;
+                TempSummaryStatistics other = (TempSummaryStatistics) otherObj;
                 if (Math.abs(this.avgTemp - other.avgTemp) > EPS) {
                         return false;
                 }
