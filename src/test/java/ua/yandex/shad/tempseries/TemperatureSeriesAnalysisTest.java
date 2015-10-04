@@ -8,6 +8,21 @@ public class TemperatureSeriesAnalysisTest {
     
 	public static final double EPS = 0.00001;
     
+    public void testConstructorWithoutArguments() {
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis();
+    }  
+
+    public void testConstructorWithArguments_NotLessThanMinTemperature() {
+        double[] temperatureSeries = {-205, -273, -220};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+    }
+    
+    @Test(expected = InputMismatchException.class)
+    public void testConstructorWithArguments_LessThanMinTemperature() {
+        double[] temperatureSeries = {-205, -274, -220};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+    }
+    
 	@Test(expected = IllegalArgumentException.class)
 	public void testAverage_FailOnEmptyList() {
         double[] temperatureSeries = {};

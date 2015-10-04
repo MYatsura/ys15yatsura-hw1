@@ -14,10 +14,16 @@ public class TemperatureSeriesAnalysis {
         
     public TemperatureSeriesAnalysis() {
         temperatureSeries = new double[]{};
-                actualLength = 0;
+        actualLength = 0;
     }
     
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
+        for (double temperature: temperatureSeries) {
+            if (temperature < MIN_TEMPERATURE) {
+                throw new InputMismatchException();
+            }
+        }
+        
         actualLength = temperatureSeries.length;
         this.temperatureSeries = new double[actualLength];
         System.arraycopy(temperatureSeries, 0, 
@@ -109,8 +115,8 @@ public class TemperatureSeriesAnalysis {
                 for (int i = 0; i < actualLength; i++) {
                         absDist = Math.abs(temperatureSeries[i]-tempValue);
                         if (absDist < minAbsDist  
-                            || (Math.abs(absDist - minAbsDist) < EPS 
-                            && closestToValue < temperatureSeries[i])) {
+                            || Math.abs(absDist - minAbsDist) < EPS 
+                            && closestToValue < temperatureSeries[i]) {
                                 closestToValue = temperatureSeries[i];
                                 minAbsDist = absDist;
                         }                        
