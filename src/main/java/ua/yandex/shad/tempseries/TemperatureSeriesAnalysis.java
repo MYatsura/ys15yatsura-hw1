@@ -18,9 +18,11 @@ public class TemperatureSeriesAnalysis {
     }
     
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-                this.temperatureSeries = temperatureSeries; 
-                actualLength = temperatureSeries.length;
-        }
+        actualLength = temperatureSeries.length;
+        this.temperatureSeries = new double[actualLength];
+        System.arraycopy(temperatureSeries, 0, 
+                         this.temperatureSeries, 0, actualLength);
+    }
     
     public double average() {   
                 if (actualLength == 0) {
