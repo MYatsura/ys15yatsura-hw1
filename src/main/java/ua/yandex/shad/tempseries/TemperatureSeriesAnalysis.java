@@ -7,7 +7,7 @@ public class TemperatureSeriesAnalysis {
         
     private static final double EPS = 0.00001;
 
-        private int actualLength;
+    private int actualLength;
         
     private double[] temperatureSeries;
        
@@ -146,19 +146,19 @@ public class TemperatureSeriesAnalysis {
                 throw new IllegalArgumentException();
             }
                 
-            int tempCount = 0;
-            for (int i = 0; i < actualLength; i++) {
-                if (temperatureSeries[i] >= tempValue) {
-                    tempCount++;
+            int tempsCount = 0;
+            for (int j = 0; j < actualLength; j++) {
+                if (temperatureSeries[j] >= tempValue) {
+                    tempsCount++;
                 }
             }
                 
-            double[] result = new double[tempCount];
+            double[] result = new double[tempsCount];
                 
-            tempCount = 0;
-            for (int i = 0; i < actualLength; i++) {
-                if (temperatureSeries[i] >= tempValue) {        
-                result[tempCount++] = temperatureSeries[i];
+            tempsCount = 0;
+            for (int j = 0; j < actualLength; j++) {
+                if (temperatureSeries[j] >= tempValue) {        
+                result[tempsCount++] = temperatureSeries[j];
             }
         }
         
