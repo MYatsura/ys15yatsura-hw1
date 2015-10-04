@@ -26,32 +26,30 @@ public class TempSummaryStatistics {
         
         @Override
         public boolean equals(Object obj) {
-                if( obj == null ) {
-                    return false;
-                }
-                if( ! ( obj instanceof TempSummaryStatistics) ) {
-                    return false;
-                }
-                TempSummaryStatistics other = (TempSummaryStatistics) obj;
-                if (Math.abs(this.avgTemp - other.avgTemp) > EPS) {
-                        return false;
-                }
-                if (Math.abs(this.devTemp - other.devTemp) > EPS) {
-                        return false;
-                }
-                if (Math.abs(this.minTemp - other.minTemp) > EPS) {
-                        return false;
-                }
-                if (Math.abs(this.maxTemp - other.maxTemp) > EPS) {
-                        return false;
-                }
-                return true;
+            if (obj == null) {
+                return false;
+            }
+            if (!( obj instanceof TempSummaryStatistics)) {
+                return false;
+            }
+            TempSummaryStatistics other = (TempSummaryStatistics) obj;
+            if (Math.abs(this.avgTemp - other.avgTemp) > EPS) {
+                return false;
+            }
+            if (Math.abs(this.devTemp - other.devTemp) > EPS) {
+                return false;
+            }
+            if (Math.abs(this.minTemp - other.minTemp) > EPS) {
+                return false;
+            }
+            if (Math.abs(this.maxTemp - other.maxTemp) > EPS) {
+                return false;
+            }
+            return true;
         }
         
         @Override
         public int hashCode() {
-            assert false : "hashCode not designed";
             return 42;
         }
-         
 }

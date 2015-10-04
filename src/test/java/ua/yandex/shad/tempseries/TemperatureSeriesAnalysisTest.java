@@ -8,17 +8,19 @@ public class TemperatureSeriesAnalysisTest {
     
 	public static final double EPS = 0.00001;
     
-    public void testConstructorWithoutArguments() {
+    @Test
+    public void testTemperatureSeriesAnalysis_WithoutArguments() {
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis();
     }  
 
-    public void testConstructorWithArguments_NotLessThanMinTemperature() {
+    @Test
+    public void testTemperatureSeriesAnalysis_NotLessThanMinTemperature() {
         double[] temperatureSeries = {-205, -273, -220};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
     }
     
     @Test(expected = InputMismatchException.class)
-    public void testConstructorWithArguments_LessThanMinTemperature() {
+    public void TemperatureSeriesAnalysis_LessThanMinTemperature() {
         double[] temperatureSeries = {-205, -274, -220};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
     }
@@ -570,5 +572,82 @@ public class TemperatureSeriesAnalysisTest {
         double[] additionTemps = {-272.63, -272.99, -273, -273.001};
 		int actualResult = seriesAnalysis.addTemps(additionTemps);
     }
-	
+    
+    @Test
+    public void testTempSummaryStatistics_WithoutArguments() {
+        TempSummaryStatistics seriesAnalysis = new TempSummaryStatistics();
+    }  
+
+    @Test
+    public void testEquals_WithNullArgument() {
+        TempSummaryStatistics seriesAnalysis = new TempSummaryStatistics();
+        TempSummaryStatistics nullSeriesAnalysis = null;
+        boolean actualResult = seriesAnalysis.equals(nullSeriesAnalysis);
+ 		assertFalse(actualResult);       
+    }
+
+    @Test
+    public void testEquals_WithDouble() {
+        TempSummaryStatistics seriesAnalysis = new TempSummaryStatistics();
+        Double doubleWrap = new Double(5.5);
+        boolean actualResult = seriesAnalysis.equals(doubleWrap);
+ 		assertFalse(actualResult);       
+    } 
+    
+    @Test
+    public void testEquals_WithTemperatureSeriesAnalysis() {
+        TempSummaryStatistics seriesAnalysis = new TempSummaryStatistics();
+        TemperatureSeriesAnalysis temperatureSeriesAnalysis = new TemperatureSeriesAnalysis();
+        boolean actualResult = seriesAnalysis.equals(temperatureSeriesAnalysis);
+ 		assertFalse(actualResult);       
+    } 
+    
+    @Test
+    public void testEquals_WithEqualObject() {
+        TempSummaryStatistics seriesAnalysis = new TempSummaryStatistics(5.8, 4.2, -1.4, 12.7);
+        TempSummaryStatistics equalSeriesAnalysis = new TempSummaryStatistics(5.8, 4.2, -1.4, 12.7);
+        boolean actualResult = seriesAnalysis.equals(equalSeriesAnalysis);
+ 		assertTrue(actualResult);       
+    } 
+    
+    @Test
+    public void testEquals_UnequalAvgTemp() {
+        TempSummaryStatistics seriesAnalysis = new TempSummaryStatistics(5.4, 6.2, 2.4, 7.1);
+        TempSummaryStatistics equalSeriesAnalysis = new TempSummaryStatistics(5.8, 6.2, 2.4, 7.1);
+        boolean actualResult = seriesAnalysis.equals(equalSeriesAnalysis);
+ 		assertFalse(actualResult);       
+    } 
+    
+    @Test
+    public void testEquals_UnequalDevTemp() {
+        TempSummaryStatistics seriesAnalysis = new TempSummaryStatistics(5.4, 6.2, 2.4, 7.1);
+        TempSummaryStatistics equalSeriesAnalysis = new TempSummaryStatistics(5.4, 6.25, 2.4, 7.1);
+        boolean actualResult = seriesAnalysis.equals(equalSeriesAnalysis);
+ 		assertFalse(actualResult);       
+    } 
+    
+    @Test
+    public void testEquals_UnequalMaxTemp() {
+        TempSummaryStatistics seriesAnalysis = new TempSummaryStatistics(5.4, 6.25, 1.7, 6.9);
+        TempSummaryStatistics equalSeriesAnalysis = new TempSummaryStatistics(5.4, 6.25, 1.7, 6.91);
+        boolean actualResult = seriesAnalysis.equals(equalSeriesAnalysis);
+ 		assertFalse(actualResult);       
+    } 
+    
+    @Test
+    public void testEquals_UnequalMinTemp() {
+        TempSummaryStatistics seriesAnalysis = new TempSummaryStatistics(5.4, 6.25, 1.8, 7.1);
+        TempSummaryStatistics equalSeriesAnalysis = new TempSummaryStatistics(5.4, 6.25, 1.7, 7.1);
+        boolean actualResult = seriesAnalysis.equals(equalSeriesAnalysis);
+ 		assertFalse(actualResult);       
+    } 
+    
+    @Test
+    public void testHashCode() {
+        TempSummaryStatistics seriesAnalysis = new TempSummaryStatistics(5.8, 4.2, -1.4, 12.7);
+        int expResult = 42;
+        int actualResult = seriesAnalysis.hashCode();
+		assertEquals(expResult, actualResult, EPS);
+    } 
+    
 }
