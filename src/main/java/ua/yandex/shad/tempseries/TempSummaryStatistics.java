@@ -29,7 +29,7 @@ public class TempSummaryStatistics {
             if (obj == null) {
                 return false;
             }
-            if (!( obj instanceof TempSummaryStatistics)) {
+            if (!(obj instanceof TempSummaryStatistics)) {
                 return false;
             }
             TempSummaryStatistics other = (TempSummaryStatistics) obj;
